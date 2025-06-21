@@ -1,0 +1,23 @@
+# Data Source
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_test
+    username: seminar
+    password: seminar01
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        show_sql: true
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://${HOST_IP_ADDRESS:localhost}:9000
+          jwk-set-uri: http://${HOST_IP_ADDRESS:localhost}:9000/oauth2/jwks

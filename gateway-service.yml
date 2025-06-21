@@ -1,0 +1,33 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: product-service-api
+          uri: lb://product-service
+          predicates: Path=/product-service/**
+          filters:
+            - StripPrefix=1
+
+        - id: order-service-api
+          uri: lb://order-service
+          predicates: Path=/order-service/**
+          filters:
+            - StripPrefix=1
+
+        - id: user-service-api
+          uri: lb://user-service
+          predicates: Path=/user-service/**
+          filters:
+            - StripPrefix=1
+#    loadbalancer:
+##      configurations: same-instance-preference
+#      configurations: com.ipt.gateway.configration.CustomLoadBalancerConfiguration
+#      health-check:
+#        enabled: true
+#        initial-delay: 5s
+#        interval: 3s
+#        path:
+#          default: /actuator/health
+#          product-service: /actuator/health
+#        refetch-instances: true
+
